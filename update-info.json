@@ -1,4 +1,5 @@
 {
+    "name": "evaa-link-redirect-handler", // This should match the plugin slug
     "version": "1.0.3",
     "download_url": "https://github.com/Gabtoof/evaa-link-redirect/releases/download/v1.0.3/evaa-link-redirect-handler.zip",
     "sections": {
