@@ -18,6 +18,10 @@ Offer a link redirect service to bypass Facebook Canadian content sharing.
  
 == Changelog ==
 
+= 1.2.7 =
+* Bug fixes & better messages for user
+
+
 = 1.2.6 =
 * Testing internal build process - last test (hopefully)
 
@@ -53,6 +57,7 @@ Offer a link redirect service to bypass Facebook Canadian content sharing.
  
 = 1.0 =
 * Initial release.
+
 
 
 

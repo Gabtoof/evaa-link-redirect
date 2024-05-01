@@ -1,8 +1,8 @@
 {
   "name": "evaa-link-redirect-handler",
-  "version": "1.2.6",
-  "download_url": "https://github.com/Gabtoof/evaa-link-redirect/releases/download/v1.2.6/evaa-link-redirect-handler.zip",
+  "version": "1.2.7",
+  "download_url": "https://github.com/Gabtoof/evaa-link-redirect/releases/download/v1.2.7/evaa-link-redirect-handler.zip",
   "sections": {
-    "description": "Testing internal build process - last test (hopefully)"
+    "description": "Bug fixes & better messages for user"
   }
 }
