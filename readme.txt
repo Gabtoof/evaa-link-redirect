@@ -18,6 +18,9 @@ Offer a link redirect service to bypass Facebook Canadian content sharing.
  
 == Changelog ==
 
+= 1.1 =
+* Mostly completed merge into single file.
+
 = 1.0.6 =
 * Update plugin update library. Correct updater code.
  
