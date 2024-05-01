@@ -3,15 +3,15 @@
 Plugin Name: EVAA Link Redirect Handler
 Plugin URI: https://github.com/Gabtoof/evaa-link-redirect
 Description: Handles link creation, redirection, validation, and rate limiting for URLs.
-Version: 1.0.6
+Version: 1.0.7
 Author: Andrew Batiuk
 Author URI: https://github.com/Gaftoof
 */
 // namespace EVAALinkRedirectHandlerPlugin; // Avoid conflicts with Georges emissions plugin
-require 'plugin-update-checker-5.4/plugin-update-checker.php';  // Include the update checker
+require 'plugin-update-checker/plugin-update-checker.php';  // Include the update checker
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 $myUpdateChecker = PucFactory::buildUpdateChecker(
-    'https://raw.githubusercontent.com/Gabtoof/evaa-link-redirect/main/update-info.json', // URL of your GitHub repository
+    'https://github.com/Gabtoof/evaa-link-redirect/',
     __FILE__, // Full path to the main plugin file
     'evaa-link-redirect-handler' // Unique slug for your plugin
 );
@@ -20,7 +20,7 @@ $myUpdateChecker = PucFactory::buildUpdateChecker(
 // $myUpdateChecker->setAuthentication('your-github-access-token');
 
 // Optional: Set the branch that contains the stable release
-// $myUpdateChecker->setBranch('main');
+$myUpdateChecker->setBranch('main');
 
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
