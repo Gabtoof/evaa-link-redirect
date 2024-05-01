@@ -1,8 +1,8 @@
 {
     "name": "evaa-link-redirect-handler",
-    "version": "1.0.4",
-    "download_url": "https://github.com/Gabtoof/evaa-link-redirect/releases/download/v1.0.4/evaa-link-redirect-handler.zip",
+    "version": "1.0.5",
+    "download_url": "https://github.com/Gabtoof/evaa-link-redirect/releases/download/v1.0.5/evaa-link-redirect-handler.zip",
     "sections": {
-        "description": "Test of automatic updating"
+        "description": "Reverted to latest updater library"
     }
 }
