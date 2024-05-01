@@ -3,7 +3,7 @@
 Plugin Name: EVAA Link Redirect Handler
 Plugin URI: https://github.com/Gabtoof/evaa-link-redirect
 Description: Handles link creation, redirection, validation, and rate limiting for URLs.
-Version: 1.1
+Version: 1.1.1
 Author: Andrew Batiuk
 Author URI: https://github.com/Gaftoof
 */
@@ -58,35 +58,52 @@ function evaa_is_within_rate_limit() {
 function evaa_link_redirect_handler() {
     ob_start();
 
+    echo "<style>
+    button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    </style>";
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['url']) && evaa_is_within_rate_limit() && evaa_validate_url($_POST['url'])) {
         $encodedUrl = urlencode($_POST['url']);
         $redirectUrl = esc_url(site_url('/link?url=' . $encodedUrl));
         evaa_log_url($redirectUrl, 'Created'); // Log the creation
+
+        $copyChecked = isset($_POST['copyToClipboard']) ? 'checked' : '';
         echo "<input id='urlBox' type='text' value='$redirectUrl' style='width: 80%;' readonly>";
-        echo "<button onclick='copyToClipboard()' style='margin-left: 10px;'>Copy URL</button>";
+        echo "<button onclick='copyToClipboard()'>Copy to Clipboard</button>";
         echo "<script>
         function copyToClipboard() {
             var copyText = document.getElementById('urlBox');
             copyText.select();
             document.execCommand('copy');
-            alert('Link copied to clipboard');
+            document.getElementById('copyNotification').textContent = 'Link has been copied to your clipboard for convenience.';
         }
-        window.onload = function() {
-            copyToClipboard();
+        if (document.getElementById('autoCopy').checked) {
+            window.onload = copyToClipboard;
         }
         </script>";
-        echo "<p><a href='$redirectUrl' target='_blank'>Click here to test redirection</a></p>";
-    } elseif (isset($_GET['url']) && evaa_is_within_rate_limit() && evaa_validate_url($_GET['url'])) {
-        $url = urldecode($_GET['url']);
-        evaa_log_url($url, 'Redirected'); // Log the redirection
-        if (!headers_sent()) {
-            header("Location: $url");
-            exit;
-        }
+        echo "<p><a href='$redirectUrl' target='_blank'>Click here to test link</a>. It has been copied to your clipboard for convenience.</p>";
+        echo "<p id='copyNotification'></p>";
+        echo "<input type='checkbox' id='autoCopy' name='copyToClipboard' $copyChecked> <label for='autoCopy'>Copy link to clipboard automatically</label>";
     } else {
+        // Display form for creating links
         echo "<form method='post' action=''>
             <label for='url'>Enter URL:</label>
             <input type='text' id='url' name='url' required style='width: 80%;'>
+            <input type='checkbox' id='autoCopy' name='copyToClipboard' checked> <label for='autoCopy'>Copy link to clipboard automatically</label>
             <button type='submit' style='background-color: #4CAF50; color: white; padding: 10px 20px; margin-left: 10px;'>Create Link</button>
         </form>";
         if ($_SERVER['REQUEST_METHOD'] === 'POST' or isset($_GET['url'])) {
@@ -98,3 +115,5 @@ function evaa_link_redirect_handler() {
 }
 
 add_shortcode('evaa_link_redirect', 'evaa_link_redirect_handler');
+
+
