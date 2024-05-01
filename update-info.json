@@ -1,8 +1,8 @@
 {
-    "name": "evaa-link-redirect-handler",
-    "version": "1.1",
-    "download_url": "https://github.com/Gabtoof/evaa-link-redirect/releases/download/v1.1/evaa-link-redirect-handler.zip",
-    "sections": {
-        "description": "Merging to single php file."
-    }
+  "name": "evaa-link-redirect-handler",
+  "version": "1.2.0",
+  "download_url": "https://github.com/Gabtoof/evaa-link-redirect/releases/download/v1.2.0/evaa-link-redirect-handler.zip",
+  "sections": {
+    "description": "Improved clipboard functionality."
+  }
 }

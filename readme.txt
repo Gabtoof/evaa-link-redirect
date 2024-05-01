@@ -18,6 +18,9 @@ Offer a link redirect service to bypass Facebook Canadian content sharing.
  
 == Changelog ==
 
+= 1.2.0 =
+* Improved clipboard functionality.
+
 = 1.1 =
 * Mostly completed merge into single file.
 
@@ -26,3 +29,4 @@ Offer a link redirect service to bypass Facebook Canadian content sharing.
  
 = 1.0 =
 * Initial release.
+

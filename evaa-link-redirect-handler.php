@@ -3,7 +3,7 @@
 Plugin Name: EVAA Link Redirect Handler
 Plugin URI: https://github.com/Gabtoof/evaa-link-redirect
 Description: Handles link creation, redirection, validation, and rate limiting for URLs.
-Version: 1.1.1
+Version: 1.2.0
 Author: Andrew Batiuk
 Author URI: https://github.com/Gaftoof
 */
