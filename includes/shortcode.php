@@ -9,8 +9,24 @@ function evaa_redirect_shortcode() {
                 return "<p style='font-size: 18px; color: red;'><strong>⚠️ Rate limit exceeded. Please try again later.</strong></p>";
             }
             logAllRedirections($redirectUrl);
-            $output .= "<p>You will be redirected to <a href='" . esc_url($redirectUrl) . "' style='color: blue;'>" . esc_html($redirectUrl) . "</a> in 2 seconds...</p>";
-            $output .= "<script>setTimeout(function() { window.location.href = '" . esc_url($redirectUrl) . "'; }, 2000);</script>";
+            $output .= "<p>You will be redirected to <a href='" . esc_url($redirectUrl) . "' style='color: blue;'>" . esc_html($redirectUrl) . "</a> in 2 seconds... ";
+            $output .= "<button id='cancelButton' style='background-color: red; color: white; padding: 8px; border: none; cursor: pointer;'>Cancel</button></p>";
+            $output .= "<script>
+                var redirectTimeout = setTimeout(function() { window.location.href = '" . esc_url($redirectUrl) . "'; }, 2000);
+                document.getElementById('cancelButton').addEventListener('click', function() {
+                    clearTimeout(redirectTimeout);
+                    this.disabled = true;
+                    this.innerText = 'Redirect Cancelled';
+                });
+            </script>";
+
+            // Add the form UI for creating a new link
+            $output .= '<form action="" method="post" style="background-color: #f0f0f0; padding: 20px; margin-top: 10px;">
+                <input type="text" name="url" placeholder="Paste your http(s) link here" style="padding: 8px; border: 1px solid black; width: 100%; box-sizing: border-box;" required>
+                <button type="submit" style="background-color: green; color: white; padding: 8px; border: none; width: auto; display: block; margin: 10px 0 10px 0;">Submit Link</button>
+                <br><strong>Note:</strong> New URL will be copied to clipboard automatically
+                </form>';
+            
             return $output;
         } else {
             $output .= "<p style='font-size: 18px; color: red;'>⚠️ Invalid URL. Please check your link and try again.</p>";
@@ -21,7 +37,7 @@ function evaa_redirect_shortcode() {
         $url = $_POST['url'];
         if (validateURL($url)) {
             logLinkCreation($url);
-            $fullUrl = esc_url('https://albertaev.ca/link?' . http_build_query(['url' => $url]));
+            $fullUrl = esc_url('https://albertaev-redirect.org/link?' . http_build_query(['url' => $url]));
 
             $output .= '<div id="evaaLinkContainer" style="background-color: #f0f0f0; padding: 20px; margin-top: 10px;">
                 <p>Here\'s your link: <a href="' . $fullUrl . '" target="_blank" id="resultUrl" style="color: blue;">' . $fullUrl . '</a></p>
